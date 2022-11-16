@@ -7,7 +7,8 @@ from products.models import Product, Comment, Category
 from products.permissions import IsAuthorOrReadOnly, IsSupplier
 from products.serializers import (
     ProductSerializer,
-    CommentSerializer
+    CommentSerializer,
+    CategorySerializer
 )
 
 
@@ -47,7 +48,6 @@ class CommentList(generics.ListCreateAPIView):
         return Response(serializer.data)
 
     def post(self, request, format=None):
-
         serializer = CommentSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save(author=self.request.user)
@@ -61,4 +61,7 @@ class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = CommentSerializer
 
 
-
+class CategoryList(generics.ListCreateAPIView):
+    permission_classes = [IsSupplier]
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
