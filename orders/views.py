@@ -21,9 +21,7 @@ class OrderCreateView(APIView):
         for item in cartitems:
             discounted_price = (
                 Decimal(item.product.price)
-                - Decimal(
-                    (Decimal(item.product.price) * item.product.discount) / 100
-                )
+                - Decimal((Decimal(item.product.price) * item.product.discount) / 100)
             ) * item.quantity
             total_price_with_discount += discounted_price
 

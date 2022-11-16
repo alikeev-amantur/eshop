@@ -75,9 +75,7 @@ class UserAccountsTest(TestCase):
         self.assertTrue(user.is_active)
 
         with self.assertRaises(ValueError):
-            db.objects.create_user(
-                email="", role=2, username="user", password="ps"
-            )
+            db.objects.create_user(email="", role=2, username="user", password="ps")
 
 
 class TestUserViews(APITestCase):

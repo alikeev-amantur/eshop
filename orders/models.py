@@ -10,6 +10,4 @@ class Order(models.Model):
         on_delete=models.CASCADE,
     )
     total_price = models.DecimalField(max_digits=50, decimal_places=2)
-    total_price_with_discount = models.DecimalField(
-        max_digits=50, decimal_places=2
-    )
+    total_price_with_discount = models.DecimalField(max_digits=50, decimal_places=2)

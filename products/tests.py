@@ -10,19 +10,17 @@ from users.models import NewUser
 class TestProductModels(TestCase):
     def test_models_str(self):
         supplier = NewUser.objects.create(
-            email="supplier@gmail.com", role=1,
-            username="supp", password="password"
+            email="supplier@gmail.com", role=1, username="supp", password="password"
         )
         client = NewUser.objects.create(
-            email="client@gmail.com", role=2,
-            username="cli", password="password"
+            email="client@gmail.com", role=2, username="cli", password="password"
         )
         product = Product.objects.create(
             title="Shirt",
             description="clothes",
             price="50.95",
             discount=50,
-            supplier=supplier
+            supplier=supplier,
         )
         self.assertEqual(str(product), "Shirt")
         category = Category.objects.create(name="clothes", product=product)
@@ -37,8 +35,7 @@ class ProductListViewTest(APITestCase):
     def test_get_product_list(self):
         url = reverse("product-list")
         NewUser.objects.create(
-            email="supplier@gmail.com", role=1,
-            username="sdupp", password="password"
+            email="supplier@gmail.com", role=1, username="sdupp", password="password"
         )
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -46,8 +43,7 @@ class ProductListViewTest(APITestCase):
     def test_post_product(self):
         url = reverse("product-list")
         user = NewUser.objects.create(
-            email="dummy@gmail.com", role=1,
-            username="yes", password="password"
+            email="dummy@gmail.com", role=1, username="yes", password="password"
         )
         self.client.force_authenticate(user)
         data = {
@@ -56,7 +52,7 @@ class ProductListViewTest(APITestCase):
             "pictures": "lol",
             "price": 42.23,
             "discount": 5,
-            "category": 'clothes',
+            "category": "clothes",
         }
         response = self.client.post(url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)

@@ -5,9 +5,7 @@ from products.models import Product
 
 
 class Cart(models.Model):
-    user = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE
-    )
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
 
 class CartItem(models.Model):

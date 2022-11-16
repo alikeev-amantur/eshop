@@ -8,7 +8,7 @@ from products.permissions import IsAuthorOrReadOnly, IsSupplier
 from products.serializers import (
     ProductSerializer,
     CommentSerializer,
-    CategorySerializer
+    CategorySerializer,
 )
 
 

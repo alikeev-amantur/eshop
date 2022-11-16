@@ -35,5 +35,5 @@ urlpatterns = [
     path("category/", CategoryList.as_view(), name="category"),
     path("cart/", CartAdd.as_view(), name="cart"),
     path("checkout/", OrderCreateView.as_view()),
-    path("orders/", OrderListView.as_view())
+    path("orders/", OrderListView.as_view()),
 ]
